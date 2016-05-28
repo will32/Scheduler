@@ -10,6 +10,10 @@ namespace Scheduler.Controllers
     {
         public ActionResult Index()
         {
+#if DEBUG
+            Models.ApplicationDbContext db = new Models.ApplicationDbContext();
+            db.Events.ToList();
+#endif
             return View();
         }
 

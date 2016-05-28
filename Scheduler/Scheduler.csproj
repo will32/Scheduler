@@ -197,7 +197,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\EventAdmin\Controllers\EventTypeAdminController.cs" />
     <Compile Include="Areas\EventAdmin\EventAdminAreaRegistration.cs" />
+    <Compile Include="Areas\Schedule\Controllers\EventController.cs" />
+    <Compile Include="Areas\Schedule\EventAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -205,6 +208,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Schedule\ApplicationDbContext.cs" />
+    <Compile Include="Models\Schedule\Event.cs" />
+    <Compile Include="Models\Schedule\EventDetail.cs" />
+    <Compile Include="Models\Schedule\EventType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -231,6 +239,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\EventAdmin\Views\web.config" />
+    <Content Include="Areas\Schedule\Views\web.config" />
     <None Include="Properties\PublishProfiles\SchedulerWill.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -291,9 +300,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\EventAdmin\Controllers\" />
     <Folder Include="Areas\EventAdmin\Models\" />
+    <Folder Include="Areas\EventAdmin\Views\EventTypeAdmin\" />
     <Folder Include="Areas\EventAdmin\Views\Shared\" />
+    <Folder Include="Areas\Schedule\Models\" />
+    <Folder Include="Areas\Schedule\Views\Event\" />
+    <Folder Include="Areas\Schedule\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
