@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="calander-partialview"></div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#calander-partialview").load("ListEventsInMonth");
+        });
+    </script>    
+}
