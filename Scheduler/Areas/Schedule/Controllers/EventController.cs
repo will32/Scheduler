@@ -68,6 +68,33 @@ namespace Scheduler.Areas.Schedule.Controllers
 
         public ActionResult Index()
         {
+//#if DEBUG
+//            EventType et = new EventType();
+//            et.Name = "test";
+//            et.Repeatable = true;
+//            et.TimeStamp = DateTime.Now;
+//            Db.EventType.Add(et);
+
+//            Event e = new Event();
+//            e.Name = "test";
+//            e.Year = DateTime.Now.Year;
+//            e.Month = DateTime.Now.Month;
+//            e.Day = DateTime.Now.Day;
+//            e.TimeStamp = DateTime.Now;
+            
+//            EventDetail ed = new EventDetail();
+//            ed.TimeStamp = DateTime.Now;
+//            ed.Event = e;
+//            ed.StartTime = DateTime.Now;
+//            ed.EndTIme = DateTime.Now;
+//            ed.Description = "tt";
+
+//            Db.Entry<EventType>(et).State = EntityState.Added;
+//            Db.Entry<Event>(e).State = EntityState.Added;
+//            Db.Entry<EventDetail>(ed).State = EntityState.Added;
+
+//            Db.SaveChanges();
+//#endif
             return View();
         }
 
@@ -89,7 +116,7 @@ namespace Scheduler.Areas.Schedule.Controllers
             ViewBag.Month = month;
             ViewBag.Year = year;
 
-            List<Event> events = await Db.Events.Where(e => e.Year == year && e.Month == month).ToListAsync();
+            List<Event> events = await Db.Events.Where(e => e.Year == year && e.Month == month).OrderBy(e => e.Day).ToListAsync();
             List<EventListMonthViewModel> eventsInMonth = new List<EventListMonthViewModel>();
             foreach (Event e in events)
             {

@@ -16,13 +16,11 @@
                 </th>
             </tr>
             <tr>
-                <th colspan="8" class="text-center" id="table-month">
+                <th colspan="7" class="text-center" id="table-month">
                     @System.Globalization.CultureInfo.GetCultureInfo("en").DateTimeFormat.GetMonthName(displayMonth)
                 </th>
             </tr>
             <tr>
-                <th>
-                </th>
                 @foreach (string weekName in Enum.GetNames(typeof(DayOfWeek)))
                 {
                     <th class="text-center">@weekName</th>
@@ -30,32 +28,10 @@
             </tr>
         </thead>
         <tbody>
-            @*@{ int rowCounter = 0; }
-            <tr>
-                <td></td>
-                @for (int day = 1; day <= DateTime.DaysInMonth(displayYear, displayMonth) && rowCounter < 7; day++)
-                {
-                    DateTime tempDate = new DateTime(displayYear, displayMonth, day);
-
-                    // Add space before day 1
-                    if (day == 1)
-                    {
-                        for (int counter = 0; counter < ((int)tempDate.DayOfWeek); counter++)
-                        {
-                            <td></td>
-                            rowCounter++;
-                        }
-                    }
-
-                    <td>@day</td>
-                    rowCounter++;
-                }
-            </tr>*@
             @{ int day = 1;}
             @while (day <= DateTime.DaysInMonth(displayYear, displayMonth))
             {
                 <tr>
-                    <td></td>
                     @for (int rowCounter = 0; rowCounter < 7; rowCounter++)
                     {
                         // Add space before day 1
@@ -71,7 +47,30 @@
                             }
                             else
                             {
-                                <td>@day</td>
+                                var events = @Model.Where(e => e.Day == day);
+
+                                // change background color depend on the number of events
+                                <td id=@day     
+                                    @if (events.Count() < 3)
+                                    {
+                                        <text>style="background-color: #CDFFDC"</text>
+                                    }
+                                    @if (events.Count() >= 3 && events.Count() < 6)
+                                    {
+                                        <text>style="background-color: lightyellow"</text>
+                                    }
+                                    @if (events.Count() >= 6)
+                                    {
+                                        <text>style="background-color: #FFCDDA"</text>
+                                    }
+                                >
+                                    <p>@day</p>
+                                    @foreach (var e in events)
+                                    {
+                                        <p>@e.Name</p>
+                                    }
+                                </td>
+                                
                             }
                             day++;
                         }
